@@ -76,6 +76,7 @@ async function makeReleaseFiles(options) {
       const copyFiles = [
         { name: "config/default.sample.js", option: "" },
         { name: "data/.keep", option: "" },
+        { name: "data/shoutOutList.sample.csv", option: "" },
         { name: "sounds/", option: "-r" },
       ];
 

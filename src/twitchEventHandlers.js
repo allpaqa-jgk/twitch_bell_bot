@@ -51,7 +51,13 @@ shoutOutList = readSOList();
 module.exports.onJoinHandler = (channel, username, self) => {
   if (self) return;
 
-  logger.log("onJoin(", new Date().toISOString(), "username: ", username, ")");
+  logger.logDev(
+    "onJoin(",
+    new Date().toISOString(),
+    "username: ",
+    username,
+    ")"
+  );
 };
 
 // onConnectedHandler(address: string, port: number)// Called every time the bot connects to Twitch chat
@@ -149,12 +155,11 @@ const shoutOut = (channel, username) => {
 // onRaidedHandler(channel: string, username: string, viewers: number)
 module.exports.onRaidedHandler = (channel, username, viewers) => {
   logger.logDev("* onRaided(username: ", username, "viewers: ", viewers, ")");
-  logger.logDev(new Date());
+  if (!config.raidShoutOutIsActive) return;
 
   const dulation = (5 + Math.sqrt(viewers)) * 1000;
   const message = `!so ${username}`;
   setTimeout(() => {
-    logger.logDev(new Date());
     tmiActions.say(channel, message);
   }, dulation);
 };

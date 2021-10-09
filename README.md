@@ -54,7 +54,7 @@
    - `default.sample.js` to `default.js`
    - `shoutOutList.sample.csv` to `shoutOutList.csv`
 
-1. set token, ID and so on
+1. set up config/default.js
 
    - mode // 全般
      ```
@@ -82,10 +82,18 @@
        "streamelements",
      ];
      ```
-   - firstCommentShoutOut // シャウトアウト機能
+   - firstCommentShoutOut // 初コメで紹介メッセージ投稿
      ```
      firstCommentShoutOutIsActive = true; // 有効/無効
      ```
+   - firstCommentShoutOut // レイド時に自動でシャウトアウトコマンド実行 (`!so {username}` 固定)
+     ```
+     firstCommentShoutOutIsActive = true; // 有効/無効
+     ```
+
+1. setup data/shoutOutList.csv
+
+   - `username, message` ユーザー名と、そのユーザーの初コメ時に投稿するメッセージを設定、１ユーザーに対して１行ずつ書き込む
 
 ### 3. Exec / 起動
 

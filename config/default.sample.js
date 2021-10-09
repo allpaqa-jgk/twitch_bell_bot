@@ -3,6 +3,7 @@
 // /////////////////////////
 module.exports.testMode = false;
 module.exports.bootSound = false;
+module.exports.bootSoundName = "pin";
 
 // /////////////////////////
 //         TWITCH         //
@@ -33,3 +34,6 @@ module.exports.firstCommentBellIgnoreList = [
 
 // firstCommentShoutOut
 module.exports.firstCommentShoutOutIsActive = true;
+
+// raidShoutOut
+module.exports.raidShoutOutIsActive = true;
