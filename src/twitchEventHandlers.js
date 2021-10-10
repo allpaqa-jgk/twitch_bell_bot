@@ -125,14 +125,17 @@ module.exports.onChatHandler = (channel, userstate, message, self) => {
 
     if (
       config.firstCommentBellIsActive &&
-      !config.firstCommentBellIgnoreList.includes(userstate.username) &&
-      ((!config.firstCommentBellOnlyRegularViewer && diff === 0) ||
-        diff > threshold)
+      !config.firstCommentBellIgnoreList.includes(userstate.username)
     ) {
-      ringBell();
-      shoutOut(channel, userstate.username);
-    } else if (config.commentPongIsActive) {
-      sound.play(config.commentPongSoundName);
+      if (
+        diff > threshold ||
+        (!config.firstCommentBellOnlyRegularViewer && diff === 0)
+      ) {
+        ringBell();
+        shoutOut(channel, userstate.username);
+      } else if (config.commentPongIsActive) {
+        sound.play(config.commentPongSoundName);
+      }
     }
   } catch (error) {
     logger.error("ERROR: lastChatHistory.update", error.message);
