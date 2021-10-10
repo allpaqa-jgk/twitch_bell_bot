@@ -94,7 +94,7 @@ module.exports.onChatHandler = (channel, userstate, message, self) => {
   logger.logDev("onChat(", new Date().toISOString(), "userstate: ", userstate);
   if (process.env.NODE_ENV !== "development") {
     logger.log(
-      "onMessage(",
+      "onChat(",
       new Date().toISOString(),
       "username: ",
       userstate.username,
