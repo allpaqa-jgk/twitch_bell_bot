@@ -73,13 +73,13 @@
      ```
    - commentPong // コメント時通知音機能
      ```
-     commentPongIsActive = true; // ベル機能の有効/無効
-     commentPongSoundName = "bell"; // ベル通知オンファイル名
+     commentPongIsActive = true; // コメント時通知音の有効/無効
+     commentPongSoundName = "po"; // コメント時通知音ファイル名
      ```
    - firstCommentBell // 初コメ時ベル機能
      ```
      firstCommentBellIsActive = true; // ベル機能の有効/無効
-     firstCommentBellSoundName = "bell"; // ベル通知オンファイル名
+     firstCommentBellSoundName = "bell"; // ベル通知音ファイル名
      firstCommentBellOnlyRegularViewer = true; // 履歴にないユーザーはベルを鳴らさない
      firstCommentBellDulation = 12 * 60 * 60 * 1000; // 前回のコメントから指定の時間以上経っていたらベルを鳴らす（デフォルト12時間
      firstCommentBellIgnoreList = [ // ベル機能からの除外ユーザーリスト（カンマ区切り
