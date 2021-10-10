@@ -13,12 +13,12 @@ async function runBuild() {
 
   await makeReleaseFiles(options);
 
-  options = {
-    targetNode: "windows-x64-12.6.0",
-    targetDir: "twitch_bell_bot_for_win",
-    name: "twitch_bell_bot",
-  };
-  await makeReleaseFiles(options);
+  // options = {
+  //   targetNode: "windows-x64-12.6.0",
+  //   targetDir: "twitch_bell_bot_for_win",
+  //   name: "twitch_bell_bot",
+  // };
+  // await makeReleaseFiles(options);
 }
 
 async function makeReleaseFiles(options) {
