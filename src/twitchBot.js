@@ -16,7 +16,9 @@ if (checkConfig.isOK()) {
       password: config.twitchOauthToken,
       username: config.twitchUsername,
     },
-    channels: [config.twitchChannelName],
+    channels: config.twitchChannelNames
+      ? config.twitchChannelNames
+      : [config.twitchChannelName],
   };
   // logger.logDev(opts);
 

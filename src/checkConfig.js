@@ -22,7 +22,10 @@ module.exports.isOK = () => {
         "Something wrong with twitchOauthToken. please check config file"
       );
     }
-    if (!(keys.includes("twitchUsername") && config.twitchUsername)) {
+    if (
+      !(keys.includes("twitchUsername") && config.twitchUsername) &&
+      !(keys.includes("twitchUsernames") && config.twitchUsernames)
+    ) {
       warnings.push(
         "Something wrong with twitchUsername. please check config file"
       );
