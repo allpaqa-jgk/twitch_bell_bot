@@ -131,6 +131,8 @@ module.exports.onChatHandler = (channel, userstate, message, self) => {
     ) {
       ringBell();
       shoutOut(channel, userstate.username);
+    } else if (config.commentPongIsActive) {
+      sound.play(config.commentPongSoundName);
     }
   } catch (error) {
     logger.error("ERROR: lastChatHistory.update", error.message);

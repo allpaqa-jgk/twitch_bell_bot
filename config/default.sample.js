@@ -18,9 +18,13 @@ module.exports.twitchUsername = "";
 // The Twitch channel name where you want to run the bot. Usually this is your main Twitch account.
 module.exports.twitchChannelName = "";
 
+// commentPong
+module.exports.commentPongIsActive = true;
+module.exports.commentPongSoundName = "po";
+
 // firstCommentBell
 module.exports.firstCommentBellIsActive = true;
-module.exports.firstCommentBellSound = "bell";
+module.exports.firstCommentBellSoundName = "bell";
 module.exports.firstCommentBellOnlyRegularViewer = true;
 module.exports.firstCommentBellDulation = 12 * 60 * 60 * 1000;
 module.exports.firstCommentBellIgnoreList = [

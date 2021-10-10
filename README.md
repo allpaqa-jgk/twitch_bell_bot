@@ -68,10 +68,15 @@
      twitchUsername = ""; // twitch IRC tokenを取得したユーザー名
      twitchChannelName = ""; // botの接続するチャンネルID
      ```
-   - firstCommentBell // ベル機能
+   - commentPong // コメント時通知音機能
+     ```
+     commentPongIsActive = true; // ベル機能の有効/無効
+     commentPongSoundName = "bell"; // ベル通知オンファイル名
+     ```
+   - firstCommentBell // 初コメ時ベル機能
      ```
      firstCommentBellIsActive = true; // ベル機能の有効/無効
-     firstCommentBellSound = "bell"; // ベル通知オンファイル名
+     firstCommentBellSoundName = "bell"; // ベル通知オンファイル名
      firstCommentBellOnlyRegularViewer = true; // 履歴にないユーザーはベルを鳴らさない
      firstCommentBellDulation = 12 * 60 * 60 * 1000; // 前回のコメントから指定の時間以上経っていたらベルを鳴らす（デフォルト12時間
      firstCommentBellIgnoreList = [ // ベル機能からの除外ユーザーリスト（カンマ区切り
