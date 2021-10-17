@@ -6,9 +6,8 @@ const soundList = ["bell", "pin", "po", "popi", "poyo", "pppp"];
 
 // play sound
 const playSound = (name) => {
-  logger.log("============= playSound");
   const sound = path.join(__dirname, `../sounds/${name}.mp3`);
-  logger.log("sound", sound);
+  logger.logDev("sound", sound);
 
   return new Promise((resolve, reject) => {
     player
