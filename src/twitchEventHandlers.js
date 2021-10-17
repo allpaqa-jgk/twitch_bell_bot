@@ -156,8 +156,10 @@ const shoutOut = (channel, username) => {
     Object.keys(shoutOutList).includes(username)
   ) {
     logger.logDev("so message", username, shoutOutList[username]);
-    let message = config.firstCommentShoutOutTemplate || "{message}";
-    message = message.replace("{message}", shoutOutList[username]);
+    let message = config.firstCommentShoutOutTemplate || "{message} {url}";
+    message = message
+      .replace("{message}", shoutOutList[username])
+      .replace("{url}", `twitch.tv/${username}`);
 
     tmiActions.say(channel, message);
   }
