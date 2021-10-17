@@ -51,13 +51,7 @@ shoutOutList = readSOList();
 module.exports.onJoinHandler = (channel, username, self) => {
   if (self) return;
 
-  logger.logDev(
-    "onJoin(",
-    new Date().toISOString(),
-    "username: ",
-    username,
-    ")"
-  );
+  logger.logDev("onJoin", new Date().toISOString(), "[", username, "]");
 };
 
 // onConnectedHandler(address: string, port: number)// Called every time the bot connects to Twitch chat
@@ -93,7 +87,7 @@ module.exports.onChatHandler = (channel, userstate, message, self) => {
 
   if (process.env.NODE_ENV === "development") {
     logger.log(
-      "onChat(",
+      "onChat",
       new Date().toISOString(),
       "channel: ",
       channel,
@@ -104,11 +98,11 @@ module.exports.onChatHandler = (channel, userstate, message, self) => {
     );
   } else {
     logger.log(
-      "onChat(",
+      "onChat",
       new Date().toISOString(),
-      "username: ",
+      "[",
       userstate.username,
-      "message: ",
+      "]",
       message
     );
   }
@@ -173,7 +167,7 @@ const shoutOut = (channel, username) => {
 module.exports.onRaidedHandler = (channel, username, viewers) => {
   // CAUTION: attr username was display-name. USE onRawMessageHandler
   //
-  // logger.logDev("* onRaided(username: ", username, "viewers: ", viewers, ")");
+  // logger.logDev("onRaided(username: ", username, "viewers: ", viewers, ")");
   // if (!config.raidShoutOutIsActive) return;
   // const dulation = (15 + 2 * Math.sqrt(viewers)) * 1000;
   // const message = `!so ${username}`;
@@ -220,13 +214,13 @@ module.exports.onRawMessageHandler = (messageCloned, message) => {
     messageCloned.command === "USERNOTICE" &&
     messageCloned.tags["msg-id"] === "raid"
   ) {
-    logger.logDev("* onRawMessage(msg-id=raid, message: ", messageCloned, ")");
+    logger.logDev("onRawMessage(msg-id=raid, message: ", messageCloned, ")");
 
     const username = messageCloned.tags["login"];
     const viewers = messageCloned.tags["msg-param-viewerCount"];
     const channel = messageCloned.params[0];
 
-    logger.log("* onRaided(username: ", username, "viewers: ", viewers, ")");
+    logger.log("onRaided", "[", username, "]", viewers, "raiders");
     if (!config.raidShoutOutIsActive) return;
 
     const dulation = (15 + 2 * Math.sqrt(viewers)) * 1000;
