@@ -162,7 +162,10 @@ const shoutOut = (channel, username) => {
     Object.keys(shoutOutList).includes(username)
   ) {
     logger.logDev("so message", username, shoutOutList[username]);
-    let message = shoutOutList[username];
+    let message;
+    if (config.firstCommentShoutOutTemplate)
+      message = config.firstCommentShoutOutTemplate;
+    message = message.replace("{message}", shoutOutList[username]);
     tmiActions.say(channel, message);
   }
 };

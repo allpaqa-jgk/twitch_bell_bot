@@ -95,9 +95,13 @@
      ```
      firstCommentShoutOutIsActive = true; // 有効/無効
      ```
-   - firstCommentShoutOut // レイド時に自動でシャウトアウトコマンド実行 (`!so {username}` 固定)
      ```
-     firstCommentShoutOutIsActive = true; // 有効/無効
+     firstCommentShoutOutTemplate = // 紹介メッセージ共通パーツ {message} を置換
+      "************************* {message} *******************************************";
+     ```
+   - raidShoutOut // レイド時に自動でシャウトアウトコマンド実行 (`!so {username}` 固定)
+     ```
+     raidShoutOutIsActive = true; // 有効/無効
      ```
 
 1. setup data/shoutOutList.csv

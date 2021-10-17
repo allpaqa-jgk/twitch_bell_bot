@@ -38,6 +38,8 @@ module.exports.firstCommentBellIgnoreList = [
 
 // firstCommentShoutOut
 module.exports.firstCommentShoutOutIsActive = true;
+module.exports.firstCommentShoutOutTemplate =
+  "************************* {message} *******************************************";
 
 // raidShoutOut
 module.exports.raidShoutOutIsActive = true;
