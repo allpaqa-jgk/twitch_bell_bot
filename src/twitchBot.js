@@ -66,7 +66,7 @@ if (checkConfig.isOK()) {
   // Message
   client.on("chat", twitchEventHandlers.onChatHandler);
   // client.on("message", twitchEventHandlers.onMessageHandler);
-  // client.on("raw_message", twitchEventHandlers.onRawMessageHandler);
+  client.on("raw_message", twitchEventHandlers.onRawMessageHandler);
 
   // Moderation
   // client.on("action", twitchEventHandlers.onActionHandler);

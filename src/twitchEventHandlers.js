@@ -91,8 +91,18 @@ module.exports.onChatHandler = (channel, userstate, message, self) => {
   // Ignore messages from the bot
   if (self) return;
 
-  logger.logDev("onChat(", new Date().toISOString(), "userstate: ", userstate);
-  if (process.env.NODE_ENV !== "development") {
+  if (process.env.NODE_ENV === "development") {
+    logger.log(
+      "onChat(",
+      new Date().toISOString(),
+      "channel: ",
+      channel,
+      "userstate: ",
+      userstate,
+      "message: ",
+      message
+    );
+  } else {
     logger.log(
       "onChat(",
       new Date().toISOString(),
@@ -159,12 +169,68 @@ const shoutOut = (channel, username) => {
 
 // onRaidedHandler(channel: string, username: string, viewers: number)
 module.exports.onRaidedHandler = (channel, username, viewers) => {
-  logger.logDev("* onRaided(username: ", username, "viewers: ", viewers, ")");
-  if (!config.raidShoutOutIsActive) return;
+  // CAUTION: attr username was display-name. USE onRawMessageHandler
+  //
+  // logger.logDev("* onRaided(username: ", username, "viewers: ", viewers, ")");
+  // if (!config.raidShoutOutIsActive) return;
+  // const dulation = (15 + 2 * Math.sqrt(viewers)) * 1000;
+  // const message = `!so ${username}`;
+  // setTimeout(() => {
+  //   tmiActions.say(channel, message);
+  // }, dulation);
+};
 
-  const dulation = (5 + Math.sqrt(viewers)) * 1000;
-  const message = `!so ${username}`;
-  setTimeout(() => {
-    tmiActions.say(channel, message);
-  }, dulation);
+// onRawMessageHandler(messageCloned: { [property: string]: any }, message: { [property: string]: any })
+module.exports.onRawMessageHandler = (messageCloned, message) => {
+  const ignoreCommands = [
+    "ROOMSTATE",
+    "CAP",
+    "001",
+    "002",
+    "003",
+    "004",
+    "353",
+    "366",
+    "372",
+    "375",
+    "376",
+    "JOIN",
+    "HOSTTARGET",
+    "PING",
+    "PONG",
+    "GLOBALUSERSTATE",
+    "USERSTATE",
+    "PRIVMSG",
+  ];
+  if (!ignoreCommands.includes(messageCloned.command)) {
+    // logger.logDev(
+    //   "* onRawMessage(message: ",
+    //   messageCloned,
+    //   ")",
+    //   "command",
+    //   messageCloned.command,
+    //   "msg-id",
+    //   messageCloned.tags["msg-id"]
+    // );
+  }
+
+  if (
+    messageCloned.command === "USERNOTICE" &&
+    messageCloned.tags["msg-id"] === "raid"
+  ) {
+    logger.logDev("* onRawMessage(msg-id=raid, message: ", messageCloned, ")");
+
+    const username = messageCloned.tags["login"];
+    const viewers = messageCloned.tags["msg-param-viewerCount"];
+    const channel = messageCloned.params[0];
+
+    logger.log("* onRaided(username: ", username, "viewers: ", viewers, ")");
+    if (!config.raidShoutOutIsActive) return;
+
+    const dulation = (15 + 2 * Math.sqrt(viewers)) * 1000;
+    const message = `!so ${username}`;
+    setTimeout(() => {
+      tmiActions.say(channel, message);
+    }, dulation);
+  }
 };
